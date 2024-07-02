@@ -1,0 +1,61 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block title %}
+<title>FPL</title>
+{% endblock %}
+
+{% block body %}
+<section>
+  <div class="container mt-5 ml-4"style="width: 500px;">
+    <div class="row">
+      <div class="popup_box ">
+        <div class="popup_inner">
+          <div class="logo">
+            <a href="#"><img src="{% static 'img/fpl.png' %}" alt="" /></a>
+          </div>
+          <h3>Sign Up</h3>
+          {% for i in messages %}
+                <div class="alert alert-danger" role="alert">
+                    {{i}}
+                </div>
+                {% endfor %}
+          <form action="" method="post">
+            {% csrf_token %}
+            <div class="row">
+              <div class="col-xl-12 col-md-12">
+                <label class="text-light" for="phone">Phone Number</label>
+                <input type="phone" name="phone" placeholder="Enter Phone Number">
+              </div>
+              <div class="col-xl-12 col-md-12">
+                <label class="text-light" for="email">Email</label>
+                <input type="email" name="email" placeholder="Enter Email">
+              </div>
+              <div class="col-xl-12 col-md-12">
+                <label class="text-light" for="pass">Invitation Code</label>
+                <input type="text" name="referral" placeholder="Enter Invitation code">
+              </div>
+              <div class="col-xl-12 col-md-12">
+                <label class="text-light" for="pass">Password</label>
+                <input type="password" name="password" placeholder="Password">
+              </div>
+              <div class="col-xl-12 col-md-12">
+                <label class="text-light" for="cpass">Confirm Password</label>
+                <input type="password" name="cpassword" placeholder="Confirm password">
+              </div>
+
+              <div class="col-xl-12">
+                <button type="submit" class="boxed_btn_orange">Sign Up</button>
+              </div>
+            </div>
+          </form>
+          <p class="doen_have_acc">Already have an account? <a class="dont-hav-acc ml-3" href="/login/">Sign in</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+  </div>
+</section>
+{% endblock %}

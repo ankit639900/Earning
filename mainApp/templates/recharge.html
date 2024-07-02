@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FPL</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+    padding: 20px;
+  }
+
+  header {
+    margin-bottom: 20px;
+  }
+
+  body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+    padding: 20px;
+  }
+
+  .navbar {
+    width: 100%;
+    background-color: #333;
+    overflow: hidden;
+    padding: 10px 0;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .nav-button {
+    background-color: #4caf50;
+    /* Green */
+    border: none;
+    color: white;
+    padding: 14px 20px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    margin: 0 10px;
+    cursor: pointer;
+  }
+
+  .nav-button:hover {
+    background-color: #45a049;
+  }
+
+  header {
+    margin-bottom: 20px;
+  }
+
+  .button-container {
+    display: flex;
+    justify-content: space-between;
+    width: 300px;
+    margin-bottom: 20px;
+  }
+
+  .dk-button {
+    background-color: #4caf50;
+    /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+  }
+
+  .enter-amount {
+    margin-bottom: 20px;
+  }
+
+  .enter-amount input {
+    padding: 10px;
+    font-size: 16px;
+    margin-left: 10px;
+  }
+
+  .recre-button {
+    background-color: #008cba;
+    /* Blue */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+  }
+</style>
+
+<body>
+  <!DOCTYPE html>
+  <html lang="en">
+
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Simple Layout</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+
+  <body>
+    <nav class="navbar">
+      <button class="nav-button"><a href="/rdetails/" style="text-decoration: none; color: #fff;">Record</a></button>
+    </nav>
+
+    <header>
+      <h1>Recharge</h1>
+      {% for i in messages %}
+      <div class="alert alert-danger" role="alert">
+        {{i}}
+      </div>
+      {% endfor %}
+    </header>
+
+    <div class="button-container">
+      <button class="dk-button"> 650</button>
+      <button class="dk-button">800</button>
+      <button class="dk-button">3000</button>
+    </div>
+    <div class="button-container">
+      <button class="dk-button">1600</button>
+      <button class="dk-button">4500</button>
+      <button class="dk-button">900</button>
+    </div>
+    <form action="" method="post">
+      {% csrf_token %}
+      <div class="enter-amount">
+        <label for="amount">Enter Amount:</label>
+        <input type="number" name="amount" />
+      </div>
+
+      <button class="recre-button">Recharge</button>
+    </form>
+  </body>
+
+  </html>
+</body>
+<h5>The minimum account of recharge is 100rs</h5>
+
+</html>

@@ -1,0 +1,138 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block title %}
+  <title>FPL</title>
+{% endblock %}
+<style>
+  body,
+  html {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Arial, sans-serif;
+  }
+  
+  .container {
+    text-align: center;
+  }
+  
+  .logo img {
+    max-width: 100px;
+    height: auto;
+  }
+  
+  .auth-buttons {
+    margin-top: 20px;
+  }
+  
+  .auth-buttons button {
+    margin: 0 10px;
+    padding: 10px 20px;
+    border: none;
+    background-color: #007bff;
+    color: white;
+  }
+</style>
+{% block body %}
+  <div class="container text-center p-5">
+    <div class="container">
+      <div class="logo">
+        <a href="#"><img src="{% static 'img/fpl.png' %}" alt="" /></a>
+      </div>
+    </div>
+    <br />
+    <div class="pt-15">
+      <ul class="nav navbar-nav menu_nav ml-auto">
+        {% if request.user.is_authenticated %}
+          <li class="nav-item mt-0">
+            <a href="#" class="nav-link dropdown-toggle text-light" style="font-weight: 600; font-size: larger;" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ request.user }}</a>
+            <ul class="sub-menu dropdown-menu background" style="width: max-content;">
+              <li>
+                <a href="/me/" class="text-left mt-1 nav-item text-light">PROFILE</a>
+              </li>
+              <hr style="color: rgb(254, 166, 4); font-weight: bolder; height: 3px;" />
+              <li>
+                <a href="/logout/" class="text-left mb-2 nav-item text-light">LOGOUT</a>
+              </li>
+            </ul>
+          </li>
+        {% else %}
+          {% block login %}
+            <li>
+              <a href="/login/" class="btn background text-light" style="font-weight: 600;"><i class="flaticon-user"></i> LOGIN</a>
+            </li>
+          {% endblock %}
+        {% endif %}
+      </ul>
+    </div>
+    <br />
+    <br />
+    <div class="row" style="justify-content: space-between;">
+      <div class="col-4">
+        <div class="card" style=" border: none;">
+          <a href="/recharge/"><img src="{% static 'img/courses/4.png' %}" class="card-img-top" style="width: 50px; height: 50px;" alt="..." /></a>
+          <div class="card-body" style="padding: 0;">
+            <p class="card-text">
+              <a style="text-decoration: none; width: 120px;" class="text-secondary" href="/recharge/">Recharge</a>
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-4">
+        <div class="card" style=" border: none;">
+          <a href="/withd/"><img src="{% static 'img/courses/5.png' %}" class="card-img-top" style="width: 50px; height: 50px;" alt="..." /></a>
+          <div class="card-body" style="padding: 0;">
+            <p class="card-text">
+              <a style="text-decoration: none;" class="text-secondary" href="/withd/">Withdrawn</a>
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-4">
+        <div class="card" style=" border: none;">
+          <a href="/withdrawn/"><img src="{% static 'img/courses/1.png' %}" class="card-img-top" style="width: 50px; height: 50px;" alt="..." /></a>
+          <div class="card-body" style="padding: 0;">
+            <p class="card-text">
+              <a style="text-decoration: none;" class="text-secondary" href="/withdrawn/">Bank Account</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br />
+  <br />
+  <div>
+    <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+      <div style="display: flex; gap:5px;">
+        <div style="flex: 1; padding: 20px; border: 1px solid #ccc;">
+          Rs. {{ User.rech }}<span style="margin-left: 30px;">Recharge Wallet</span>
+        </div>
+        <div style="flex: 1; padding: 20px; border: 1px solid #ccc;">
+          Rs. {{ User.dailyincome }}<span style="margin-left: 30px;">Income Today</span>
+        </div>
+        <div style="flex: 1; padding: 20px; border: 1px solid #ccc;">
+          Rs. {{ User.totalamount }}<span style="margin-left: 30px;">Total Earning</span>
+        </div>
+      </div>
+  </div>
+  <div class="row" >
+    <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+      <div style="display: flex; gap: 10px; ">
+        <div style="flex: 1; padding: 20px; border: 1px solid #ccc;">
+          Rs.{{ User.totalamount }}<span style="margin-left:30px;">Balance Wallet</span>
+        </div>
+        <div style="flex: 1; padding: 20px; border: 1px solid #ccc;">
+          Rs. {{ User.product }}<span style="margin-left:30px;">Product Wallet</span>
+        </div>
+        <div style="flex: 1; padding: 20px; border: 1px solid #ccc;">
+          Rs. 0<span style="margin-left:30px;">Team Income</span>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

@@ -1,0 +1,41 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block title %}
+  <title>FPL</title>
+{% endblock %}
+
+{% block body %}
+  <div class="container-fluid mb-2 mt-3">
+    <div class="row">
+      <div class="col-2"></div>
+      <div class="col-xxl-8 col-xl-8 col-lg-8 col-md-12 col-sm-12 col-12">
+        <h3 class="background text-light text-center p-2 mt-1">Product Buy Details</h3>
+        <table class="table table-light table-striped table-hover">
+          <tr>
+            <th colspan="1">Product ID</th>
+            <th colspan="1">Product</th>
+            <th colspan="1">Price</th>
+            <th colspan="1">Date</th>
+            <th colspan="1">Generate Income</th>
+          </tr>
+          {% for i in Product %}
+            <tr>
+              <th colspan="1">{{ i.id }}</th>
+              <th colspan="1">{{ i.product.name }}</th>
+              <th colspan="1">{{ i.product.baseprice }}</th>
+              <th colspan="1">{{ i.date }}</th>
+              <th>
+                <a href="/generate/{{ i.id }}" class="btn background text-light">Generate Income</a>
+              </th>
+            </tr>
+          {% endfor %}
+        </table>
+        {% for message in messages %}
+          <div class="message {{ message.tags }}">{{ message }}</div>
+        {% endfor %}
+      </div>
+      <div class="col-2"></div>
+    </div>
+  </div>
+{% endblock %}

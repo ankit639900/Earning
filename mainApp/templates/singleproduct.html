@@ -1,0 +1,142 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block title %}
+  <title>FPL</title>
+{% endblock %}
+
+{% block body %}
+  <div class="container-fluid mb-2 mt-3">
+    <div class="row">
+      <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-10 col-sm-10 col-10 mt-1">
+        <div id="carouselExampleIndicators" class="carousel slide" style="height: 300px;" data-bs-ride="carousel">
+          <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+          </div>
+
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              {% if Product.pic1 %}
+                <img src="{{ Product.pic1.url }}" class="d-block" style="height: 300px;" alt="..." />
+              {% else %}
+                <td>
+                  <img src="{% static 'images/noimagep.png' %}" class="d-block" style="height: 300px;" alt="..." />
+                </td>
+              {% endif %}
+            </div>
+            <div class="carousel-item">
+              {% if Product.pic2 %}
+                <img src="{{ Product.pic2.url }}" class="d-block w-100" style="height: 300px;" alt="..." />
+              {% else %}
+                <td>
+                  <img src="{% static 'images/noimagep.png' %}" class="d-block w-100" style="height: 300px;" alt="..." />
+                </td>
+              {% endif %}
+            </div>
+            <div class="carousel-item">
+              {% if Product.pic3 %}
+                <img src="{{ Product.pic3.url }}" class="d-block" style="height: 300px;" alt="..." />
+              {% else %}
+                <td>
+                  <img src="{% static 'images/noimagep.png' %}" class="d-block" style="height: 300px;" alt="..." />
+                </td>
+              {% endif %}
+            </div>
+          </div>
+
+          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </div>
+      </div>
+      <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+        <h3 class="background text-light text-center p-2 mt-1">{{ Product.name }}</h3>
+        <table class="table table-light table-striped table-hover">
+          <tr>
+            <th>Name :-</th>
+            <td>{{ Product.name }}</td>
+          </tr>
+          <tr>
+            <th>Price :-</th>
+            <td>{{ Product.baseprice }}</td>
+          </tr>
+          <tr>
+            <th>Term :-</th>
+            <td>{{ Product.term }}</td>
+          </tr>
+          <tr>
+            <th>Purchaselimit :-</th>
+            <td>{{ Product.purchaselimit }}</td>
+          </tr>
+          <tr>
+            <th>Daily income :-</th>
+            <td>{{ Product.income }}</td>
+          </tr>
+          <tr>
+            <th>Total revenue :-</th>
+            <td>{{ Product.totalrevenue }}%</td>
+          </tr>
+          <tr>
+            <th>Total yield :-</th>
+            <td>&#8377;{{ Product.totalyield }}</td>
+          </tr>
+          <tr>
+            <th>Stock :-</th>
+            <td>{{ Product.stock }}</td>
+          </tr>
+          {% for i in messages %}
+            <tr>
+              <div class="alert alert-danger" role="alert">{{ i }}</div>
+            </tr>
+          {% endfor %}
+          <tr>
+            <th>Description :-</th>
+            <td>{{ Product.description }}</td>
+          </tr>
+
+          <tr>
+            <th colspan="2">
+              <button type="button" class="btn background text-light" style="margin-right: 10px;" data-toggle="modal" data-target="#exampleModalCenter">Invest In Project</button>
+
+              <!-- Modal -->
+              <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLongTitle">Confirm Product</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    </div>
+                    <div class="modal-body">
+                      <div class="row">
+                        <p>
+                          Price <span style="margin-left: 200px;">{{ Product.baseprice }}</span>
+                        </p>
+                        <p>
+                          Confirm Price<span style="margin-left: 145px;">{{ Product.baseprice }}</span>
+                        </p>
+                      </div>
+                    </div>
+                    <form action=" " method="post">
+                      {% csrf_token %}
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Confirm</button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </th>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+{% endblock %}
